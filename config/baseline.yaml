@@ -1,0 +1,25 @@
+# Participant file used only in baseline.cpp
+participant_file: "/home/ttsitos/catkin_ws/src/human_robot_collaborative_learning/games_info/baseline/CO"
+
+# Limits of EE velocity
+max_vel: 0.2
+min_vel: -0.2
+
+# Limits of EE position
+max_x: -0.179
+min_x: -0.359
+max_y: 0.330
+min_y: 0.149
+
+# Starting positions
+start_position: [-0.264, 0.161, 0.174]
+
+# Goal position
+goal_position: 0.246
+
+# Number of games
+num_of_games: 7
+
+# Goal tolerance (maximum distance from the goal and maximum speed so that the game is won)
+position_tolerance: 0.01
+velocity_tolerance: 0.02

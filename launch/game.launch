@@ -1,0 +1,15 @@
+<?xml version="2.0"?>
+
+<launch>
+
+	<node name="rl_control" type="game_control_sign.py" pkg="human_robot_collaborative_learning" output="screen">
+		<rosparam file="$(find human_robot_collaborative_learning)/config/rl_params.yaml" command="load"/>
+	</node>
+
+	<node name="robot_movement_generation" type="robot_control_sign" pkg="human_robot_collaborative_learning" output="screen">
+		<rosparam file="$(find human_robot_collaborative_learning)/config/robot_control_params.yaml" command="load"/>
+	</node>
+	
+	<node name="score_visualization" type="score_visualization.py" pkg="human_robot_collaborative_learning" output="screen">
+	</node>
+</launch>

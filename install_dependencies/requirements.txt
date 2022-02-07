@@ -1,0 +1,15 @@
+numpy
+pandas
+torch==1.4.0
+scipy
+sklearn
+matplotlib
+pygame
+pyyaml
+tqdm
+rosinstall
+msgpack
+empy
+defusedxml
+netifaces
+pydub

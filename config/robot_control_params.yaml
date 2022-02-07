@@ -1,0 +1,18 @@
+# Participant file used only in baseline.cpp
+participant_file: "/home/ttsitos/catkin_ws/src/human_robot_collaborative_learning/games_info/baseline/EM"
+
+# Limits of EE velocity
+max_vel: 0.2
+min_vel: -0.2
+
+# Limits of EE position
+max_x: -0.179
+min_x: -0.359
+max_y: 0.340
+min_y: 0.160
+
+# Starting positions
+start_position_0: [-0.349, 0.330, 0.173] # down left
+start_position_1: [-0.349, 0.170, 0.173] # down right
+start_position_2: [-0.189, 0.330, 0.173] # up left
+start_position_3: [-0.189, 0.170, 0.173] # up right

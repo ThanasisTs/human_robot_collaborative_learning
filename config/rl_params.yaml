@@ -1,0 +1,53 @@
+Game:
+  participant_name: "CO"
+  full_path: "/home/ttsitos/catkin_ws/src/human_robot_collaborative_learning/"
+  train_model: False # True if no training happens
+  load_model_training: True # True if loading model to continue training
+  load_model_training_dir: "/home/ttsitos/catkin_ws/src/human_robot_collaborative_learning/rl_models/expert" # Location of the model 
+  load_model_transfer_learning: False # True if loading model for transfer_learning 
+  load_model_transfer_learning_dir: "/home/ttsitos/catkin_ws/src/human_robot_collaborative_learning/rl_models/expert" # Location of the model for transfer learning 
+  load_model_testing_dir: "/home/ttsitos/catkin_ws/src/human_robot_collaborative_learning/rl_models/expert" # Location of the model for testing
+  save: True # Save models and logs
+  goal: [-0.264, 0.242] # goal position
+  goal_distance: 0.01 # maximum distance from goal in order to win
+  goal_velocity: 0.05 # maximum speed in order to win
+  win_audio: "street-fighter-ii-you-win-perfect.mp3" # audio for win
+  lose_audio: "gaming-sound-effect-hd.mp3" # audio for lose
+  start_audio: ["beep-07a.mp3", "beep-09.mp3"] # audio for starting the game
+  rest_period: 180 # rest period between training-testing batches
+  ppr_threshold: 0.7 # initial ppr probability
+
+SAC:
+  # SAC parameters
+  layer1_size: 32 # Number of variables in hidden layer
+  layer2_size: 32 # Number of variables in hidden layer
+  batch_size: 256
+  gamma: 0.99  # discount factor
+  tau: 0.005
+  alpha: 0.0003
+  beta: 0.0003
+  target_entropy_ratio: 0.4
+  buffer_max_size: 1000000
+
+
+# The game in splitted in training batches. Each batch consists of `test:max_episodes` testing episodes and `learn_every_n_episodes` training episodes.  
+# After each batch is completed, the model is trained. This procedure is repeated until `max_episodes` training episodes have been completed. 
+Experiment:
+  max_episodes: 70  # Total training episodes per game
+  max_duration: 30  # Max duration of an episode (in seconds). An episode ends if the ball hits the target or if we reach the time limit
+  test_interval: 10 # Test the current model after `test_interval` episodes
+  action_duration: 0.2 # Time duration between consecutive RL agent actions
+  scheduling: "uniform" # "uniform" or "descending"
+  start_training_on_episode: 10 # Will not train the agent before this trial
+  stop_random_agent: 10 # Stop using random agent on this trial and start using SAC
+  learn_every_n_episodes: 10 # Perform offline gradient updates after every `learn_every_n_episodes` episodes
+  total_update_cycles: 98000 # Total number of offline gradient updates throughout the whole experiment
+  reward_scale: 2 # Scale for the reward
+  number_of_agent_actions: 3 # number of discrete actions
+  win_reward: 10 # reward at win
+  lose_reward: -1 # reward at every non-win state
+
+  test:
+    max_episodes: 10 # Total testing episodes in a training batch
+    max_duration: 30 # Max duration of an episode (in seconds). An episode ends if the ball hits the target or if we reach the time limit
+
