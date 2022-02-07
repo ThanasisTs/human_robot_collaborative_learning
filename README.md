@@ -11,7 +11,7 @@ The human controls the position of the EE in one axis (x-axis) while the DRL age
 
 In the beginning of a game, the EE is automatically placed in one of the four starting positions denoted with the symbol "S". The task is solved if the team manages to bring the EE inside the goal space with a maximum allowed velocity during a specific time duration. The goal position is denoted with the symbol "X" and the goal space is the denoted with the circle around it. Once the EE is placed at the initial position, a certain sound is produced indicating the start of the game. Furthermore, two different sounds are produced at the end of the game depending on the outcome. Lastly, the outcome of the game, the score of the team and the number of the game are visualized in a window.
 
-<img src="https://github.com/ThanasisTs/human_robot_collaborative_learning/blob/main/pictures/visualization.png" height="500" width="400">
+<img src="https://github.com/ThanasisTs/human_robot_collaborative_learning/blob/main/pictures/visualization.png" height="500" width="450">
 
 The entire game has been implemented in ROS using both roscpp and rospy APIs and has been tested on Ubuntu 18.04 and ROS Melodic distribution.
 
@@ -24,6 +24,8 @@ The Soft Actor-Critic (SAC) algorithm is used with modifications for discrete ac
 * Observation space: The observation space is the position and velocity of the EE in the xy plane (4D vector).
 * Action space: The action space is the positive, negative and zero acceleration (3D vector).
 * Reward function: At each timestep, the agent receives a reward of -1 if the EE transitioned to a non-goal state and 10 if it reached the goal. 
+
+The implementation of the SAC algorithm is based on [here](https://github.com/kengz/SLM-Lab) and [here](https://github.com/EveLIn3/Discrete_SAC_LunarLander/blob/master/sac_discrete.py).
 
 ### Transfer Learning
 The game can be played using two different conditions.
@@ -39,6 +41,8 @@ A version of the game exists where the DRL agent is not used and the EE can move
 
 
 ## Run
+Before running anything go to the `game_control_sign.py` file and change the python interpreter path to the absolute path of the virtual environment in your machine.
+
 The game has been tested only on the real robot and not on a simulated environment. The following instructions assume that the [Universal Robot UR3 Cobot](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver) is used as a robotic manipulator along with a [Cartesian Velocity Controller Interface(CVCI)](https://github.com/Roboskel-Manipulation/manos/tree/updated_driver/manos_cartesian_control). Clone the [repo](https://github.com/Roboskel-Manipulation/manos), which contains important utilities for the robot, and install the necessary repos listed in its README.md.
 
 * Run `roslaunch manos_bringup manos_bringup.launch robot_ip:=<robot_ip> kinematics_config:=<path_to_catkin_ws>/src/manos/manos_bringup/config/manos_calibration.yaml`. This will launch the UR3 drivers and the CVCI.
